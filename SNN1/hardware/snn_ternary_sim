@@ -1,0 +1,855 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5b0a6854c860 .scope module, "tb_snn_ternary" "tb_snn_ternary" 2 10;
+ .timescale -9 -12;
+P_0x5b0a6854b630 .param/l "CLK_PERIOD" 0 2 13, +C4<00000000000000000000000000001010>;
+P_0x5b0a6854b670 .param/l "LEAK" 0 2 16, +C4<00000000000000000000000000000000>;
+P_0x5b0a6854b6b0 .param/l "POTENTIAL_WIDTH" 0 2 17, +C4<00000000000000000000000000001000>;
+P_0x5b0a6854b6f0 .param/l "SIM_TIME" 0 2 18, +C4<00000000000000000000001111101000>;
+P_0x5b0a6854b730 .param/l "SPIKE_PERIOD" 0 2 14, +C4<00000000000000000000000000000101>;
+P_0x5b0a6854b770 .param/l "THRESHOLD" 0 2 15, +C4<00000000000000000000000000000010>;
+v0x5b0a685b55e0_0 .var "clk", 0 0;
+v0x5b0a685b56a0_0 .net "led_out", 0 0, v0x5b0a685b1170_0;  1 drivers
+v0x5b0a685b57b0_0 .var/i "output_spike_count", 31 0;
+v0x5b0a685b5850_0 .var "rst_n", 0 0;
+v0x5b0a685b58f0_0 .net "spike_enc_0", 0 0, v0x5b0a685b4e00_0;  1 drivers
+v0x5b0a685b5a30_0 .net "spike_enc_1", 0 0, v0x5b0a685b54a0_0;  1 drivers
+v0x5b0a685b5b20_0 .var "switch_0", 0 0;
+v0x5b0a685b5c10_0 .var "switch_1", 0 0;
+v0x5b0a685b5d00_0 .var/i "test_number", 31 0;
+S_0x5b0a6854a3e0 .scope module, "dut" "snn_core_ternary" 2 59, 3 9 0, S_0x5b0a6854c860;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "spike_in_0";
+    .port_info 3 /INPUT 1 "spike_in_1";
+    .port_info 4 /INPUT 1 "switch_0";
+    .port_info 5 /INPUT 1 "switch_1";
+    .port_info 6 /OUTPUT 1 "spike_out";
+P_0x5b0a685509b0 .param/l "LEAK" 0 3 12, +C4<00000000000000000000000000000000>;
+P_0x5b0a685509f0 .param/l "POTENTIAL_WIDTH" 0 3 13, +C4<00000000000000000000000000001000>;
+P_0x5b0a68550a30 .param/l "THRESHOLD" 0 3 11, +C4<00000000000000000000000000000010>;
+P_0x5b0a68550a70 .param/l "WEIGHT_BOTH_INHIB" 0 3 31, +C4<11111111111111111111111111111111>;
+P_0x5b0a68550ab0 .param/l "WEIGHT_H0_H1" 0 3 27, +C4<11111111111111111111111111111111>;
+P_0x5b0a68550af0 .param/l "WEIGHT_H0_O" 0 3 23, +C4<00000000000000000000000000000001>;
+P_0x5b0a68550b30 .param/l "WEIGHT_H1_H0" 0 3 28, +C4<11111111111111111111111111111111>;
+P_0x5b0a68550b70 .param/l "WEIGHT_H1_O" 0 3 24, +C4<00000000000000000000000000000001>;
+P_0x5b0a68550bb0 .param/l "WEIGHT_I0_H0" 0 3 17, +C4<00000000000000000000000000000001>;
+P_0x5b0a68550bf0 .param/l "WEIGHT_I0_H1" 0 3 19, +C4<00000000000000000000000000000001>;
+P_0x5b0a68550c30 .param/l "WEIGHT_I1_H0" 0 3 18, +C4<00000000000000000000000000000001>;
+P_0x5b0a68550c70 .param/l "WEIGHT_I1_H1" 0 3 20, +C4<00000000000000000000000000000001>;
+L_0x5b0a685c6be0 .functor AND 1, v0x5b0a685b5b20_0, v0x5b0a685b5c10_0, C4<1>, C4<1>;
+L_0x705625786018 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b12d0_0 .net/2s *"_ivl_0", 31 0, L_0x705625786018;  1 drivers
+L_0x7056257860f0 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b13d0_0 .net/2s *"_ivl_10", 31 0, L_0x7056257860f0;  1 drivers
+v0x5b0a685b14b0_0 .net/s *"_ivl_100", 8 0, L_0x5b0a685c8760;  1 drivers
+v0x5b0a685b1570_0 .net *"_ivl_12", 31 0, L_0x5b0a685c5fd0;  1 drivers
+L_0x705625786138 .functor BUFT 1, C4<11111111111111111111111111111111>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b1650_0 .net/2s *"_ivl_16", 31 0, L_0x705625786138;  1 drivers
+L_0x705625786180 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b1780_0 .net/2s *"_ivl_18", 31 0, L_0x705625786180;  1 drivers
+L_0x705625786060 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b1860_0 .net/2s *"_ivl_2", 31 0, L_0x705625786060;  1 drivers
+v0x5b0a685b1940_0 .net *"_ivl_20", 31 0, L_0x5b0a685c6280;  1 drivers
+v0x5b0a685b1a20_0 .net/s *"_ivl_24", 8 0, L_0x5b0a685c6540;  1 drivers
+v0x5b0a685b1b00_0 .net/s *"_ivl_26", 8 0, L_0x5b0a685c6630;  1 drivers
+v0x5b0a685b1be0_0 .net/s *"_ivl_28", 8 0, L_0x5b0a685c6770;  1 drivers
+v0x5b0a685b1cc0_0 .net/s *"_ivl_30", 8 0, L_0x5b0a685c68b0;  1 drivers
+L_0x7056257861c8 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b1da0_0 .net/2s *"_ivl_34", 31 0, L_0x7056257861c8;  1 drivers
+L_0x705625786210 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b1e80_0 .net/2s *"_ivl_36", 31 0, L_0x705625786210;  1 drivers
+v0x5b0a685b1f60_0 .net *"_ivl_38", 31 0, L_0x5b0a685c6b40;  1 drivers
+v0x5b0a685b2040_0 .net *"_ivl_4", 31 0, L_0x5b0a685c5df0;  1 drivers
+L_0x705625786258 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b2120_0 .net/2s *"_ivl_42", 31 0, L_0x705625786258;  1 drivers
+L_0x7056257862a0 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b2310_0 .net/2s *"_ivl_44", 31 0, L_0x7056257862a0;  1 drivers
+v0x5b0a685b23f0_0 .net *"_ivl_46", 31 0, L_0x5b0a685c6d90;  1 drivers
+L_0x7056257862e8 .functor BUFT 1, C4<11111111111111111111111111111111>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b24d0_0 .net/2s *"_ivl_50", 31 0, L_0x7056257862e8;  1 drivers
+L_0x705625786330 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b25b0_0 .net/2s *"_ivl_52", 31 0, L_0x705625786330;  1 drivers
+v0x5b0a685b2690_0 .net *"_ivl_54", 31 0, L_0x5b0a685c6fa0;  1 drivers
+v0x5b0a685b2770_0 .net/s *"_ivl_58", 8 0, L_0x5b0a685c72b0;  1 drivers
+v0x5b0a685b2850_0 .net/s *"_ivl_60", 8 0, L_0x5b0a685c7440;  1 drivers
+v0x5b0a685b2930_0 .net/s *"_ivl_62", 8 0, L_0x5b0a685c7530;  1 drivers
+v0x5b0a685b2a10_0 .net/s *"_ivl_64", 8 0, L_0x5b0a685c73a0;  1 drivers
+L_0x705625786378 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b2af0_0 .net/2s *"_ivl_68", 31 0, L_0x705625786378;  1 drivers
+L_0x7056257863c0 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b2bd0_0 .net/2s *"_ivl_70", 31 0, L_0x7056257863c0;  1 drivers
+v0x5b0a685b2cb0_0 .net *"_ivl_72", 31 0, L_0x5b0a685c79c0;  1 drivers
+L_0x705625786408 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b2d90_0 .net/2s *"_ivl_76", 31 0, L_0x705625786408;  1 drivers
+L_0x705625786450 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b2e70_0 .net/2s *"_ivl_78", 31 0, L_0x705625786450;  1 drivers
+L_0x7056257860a8 .functor BUFT 1, C4<00000000000000000000000000000001>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b2f50_0 .net/2s *"_ivl_8", 31 0, L_0x7056257860a8;  1 drivers
+v0x5b0a685b3030_0 .net *"_ivl_80", 31 0, L_0x5b0a685c7cc0;  1 drivers
+v0x5b0a685b3110_0 .net *"_ivl_85", 0 0, L_0x5b0a685c6be0;  1 drivers
+L_0x705625786498 .functor BUFT 1, C4<11111111111111111111111111111111>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b31d0_0 .net/2s *"_ivl_86", 31 0, L_0x705625786498;  1 drivers
+L_0x7056257864e0 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b32b0_0 .net/2s *"_ivl_88", 31 0, L_0x7056257864e0;  1 drivers
+v0x5b0a685b3390_0 .net *"_ivl_90", 31 0, L_0x5b0a685c7fd0;  1 drivers
+v0x5b0a685b3470_0 .net/s *"_ivl_94", 8 0, L_0x5b0a685c8340;  1 drivers
+v0x5b0a685b3550_0 .net/s *"_ivl_96", 8 0, L_0x5b0a685c8430;  1 drivers
+v0x5b0a685b3630_0 .net/s *"_ivl_98", 8 0, L_0x5b0a685c8620;  1 drivers
+v0x5b0a685b3710_0 .net "clk", 0 0, v0x5b0a685b55e0_0;  1 drivers
+v0x5b0a685b37b0_0 .net/s "current_hidden_0", 8 0, L_0x5b0a685c6a00;  1 drivers
+v0x5b0a685b3870_0 .net/s "current_hidden_1", 8 0, L_0x5b0a685c7770;  1 drivers
+v0x5b0a685b3910_0 .net/s "current_output", 8 0, L_0x5b0a685c8960;  1 drivers
+v0x5b0a685b39e0_0 .net "rst_n", 0 0, v0x5b0a685b5850_0;  1 drivers
+v0x5b0a685b3a80_0 .net "spike_hidden_0", 0 0, v0x5b0a68558900_0;  1 drivers
+v0x5b0a685b3b50_0 .net "spike_hidden_1", 0 0, v0x5b0a685b0550_0;  1 drivers
+v0x5b0a685b3c20_0 .net "spike_in_0", 0 0, v0x5b0a685b4e00_0;  alias, 1 drivers
+v0x5b0a685b3cc0_0 .net "spike_in_1", 0 0, v0x5b0a685b54a0_0;  alias, 1 drivers
+v0x5b0a685b3d60_0 .net "spike_out", 0 0, v0x5b0a685b1170_0;  alias, 1 drivers
+v0x5b0a685b3e30_0 .net "switch_0", 0 0, v0x5b0a685b5b20_0;  1 drivers
+v0x5b0a685b3ed0_0 .net "switch_1", 0 0, v0x5b0a685b5c10_0;  1 drivers
+v0x5b0a685b3f70_0 .net/s "weighted_both_inhib", 7 0, L_0x5b0a685c8160;  1 drivers
+v0x5b0a685b4050_0 .net/s "weighted_h0_h1_inhib", 7 0, L_0x5b0a685c71c0;  1 drivers
+v0x5b0a685b4130_0 .net/s "weighted_h0_o", 7 0, L_0x5b0a685c7b00;  1 drivers
+v0x5b0a685b4210_0 .net/s "weighted_h1_h0_inhib", 7 0, L_0x5b0a685c6410;  1 drivers
+v0x5b0a685b42f0_0 .net/s "weighted_h1_o", 7 0, L_0x5b0a685c7e00;  1 drivers
+v0x5b0a685b43d0_0 .net/s "weighted_i0_h0", 7 0, L_0x5b0a685c5ee0;  1 drivers
+v0x5b0a685b44b0_0 .net/s "weighted_i0_h1", 7 0, L_0x5b0a685c6ca0;  1 drivers
+v0x5b0a685b4590_0 .net/s "weighted_i1_h0", 7 0, L_0x5b0a685c6110;  1 drivers
+v0x5b0a685b4670_0 .net/s "weighted_i1_h1", 7 0, L_0x5b0a685c6eb0;  1 drivers
+E_0x5b0a6853a960 .event posedge, v0x5b0a685690e0_0;
+L_0x5b0a685c5df0 .functor MUXZ 32, L_0x705625786060, L_0x705625786018, v0x5b0a685b4e00_0, C4<>;
+L_0x5b0a685c5ee0 .part L_0x5b0a685c5df0, 0, 8;
+L_0x5b0a685c5fd0 .functor MUXZ 32, L_0x7056257860f0, L_0x7056257860a8, v0x5b0a685b54a0_0, C4<>;
+L_0x5b0a685c6110 .part L_0x5b0a685c5fd0, 0, 8;
+L_0x5b0a685c6280 .functor MUXZ 32, L_0x705625786180, L_0x705625786138, v0x5b0a685b0550_0, C4<>;
+L_0x5b0a685c6410 .part L_0x5b0a685c6280, 0, 8;
+L_0x5b0a685c6540 .extend/s 9, L_0x5b0a685c5ee0;
+L_0x5b0a685c6630 .extend/s 9, L_0x5b0a685c6110;
+L_0x5b0a685c6770 .arith/sum 9, L_0x5b0a685c6540, L_0x5b0a685c6630;
+L_0x5b0a685c68b0 .extend/s 9, L_0x5b0a685c6410;
+L_0x5b0a685c6a00 .arith/sum 9, L_0x5b0a685c6770, L_0x5b0a685c68b0;
+L_0x5b0a685c6b40 .functor MUXZ 32, L_0x705625786210, L_0x7056257861c8, v0x5b0a685b4e00_0, C4<>;
+L_0x5b0a685c6ca0 .part L_0x5b0a685c6b40, 0, 8;
+L_0x5b0a685c6d90 .functor MUXZ 32, L_0x7056257862a0, L_0x705625786258, v0x5b0a685b54a0_0, C4<>;
+L_0x5b0a685c6eb0 .part L_0x5b0a685c6d90, 0, 8;
+L_0x5b0a685c6fa0 .functor MUXZ 32, L_0x705625786330, L_0x7056257862e8, v0x5b0a68558900_0, C4<>;
+L_0x5b0a685c71c0 .part L_0x5b0a685c6fa0, 0, 8;
+L_0x5b0a685c72b0 .extend/s 9, L_0x5b0a685c6ca0;
+L_0x5b0a685c7440 .extend/s 9, L_0x5b0a685c6eb0;
+L_0x5b0a685c7530 .arith/sum 9, L_0x5b0a685c72b0, L_0x5b0a685c7440;
+L_0x5b0a685c73a0 .extend/s 9, L_0x5b0a685c71c0;
+L_0x5b0a685c7770 .arith/sum 9, L_0x5b0a685c7530, L_0x5b0a685c73a0;
+L_0x5b0a685c79c0 .functor MUXZ 32, L_0x7056257863c0, L_0x705625786378, v0x5b0a68558900_0, C4<>;
+L_0x5b0a685c7b00 .part L_0x5b0a685c79c0, 0, 8;
+L_0x5b0a685c7cc0 .functor MUXZ 32, L_0x705625786450, L_0x705625786408, v0x5b0a685b0550_0, C4<>;
+L_0x5b0a685c7e00 .part L_0x5b0a685c7cc0, 0, 8;
+L_0x5b0a685c7fd0 .functor MUXZ 32, L_0x7056257864e0, L_0x705625786498, L_0x5b0a685c6be0, C4<>;
+L_0x5b0a685c8160 .part L_0x5b0a685c7fd0, 0, 8;
+L_0x5b0a685c8340 .extend/s 9, L_0x5b0a685c7b00;
+L_0x5b0a685c8430 .extend/s 9, L_0x5b0a685c7e00;
+L_0x5b0a685c8620 .arith/sum 9, L_0x5b0a685c8340, L_0x5b0a685c8430;
+L_0x5b0a685c8760 .extend/s 9, L_0x5b0a685c8160;
+L_0x5b0a685c8960 .arith/sum 9, L_0x5b0a685c8620, L_0x5b0a685c8760;
+S_0x5b0a68549340 .scope module, "hidden_neuron_0" "lif_neuron_weighted" 3 141, 3 218 0, S_0x5b0a6854a3e0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 9 "input_current";
+    .port_info 3 /OUTPUT 1 "spike_out";
+    .port_info 4 /INPUT 8 "neuron_id";
+P_0x5b0a6856b690 .param/l "LEAK" 0 3 221, +C4<00000000000000000000000000000000>;
+P_0x5b0a6856b6d0 .param/l "POTENTIAL_WIDTH" 0 3 222, +C4<00000000000000000000000000001000>;
+P_0x5b0a6856b710 .param/l "THRESHOLD" 0 3 220, +C4<00000000000000000000000000000010>;
+P_0x5b0a6856b750 .param/l "WEIGHT" 0 3 219, +C4<00000000000000000000000000000000>;
+v0x5b0a685690e0_0 .net "clk", 0 0, v0x5b0a685b55e0_0;  alias, 1 drivers
+v0x5b0a68566760_0 .net/s "input_current", 8 0, L_0x5b0a685c6a00;  alias, 1 drivers
+v0x5b0a68566c30_0 .var/s "membrane_potential", 7 0;
+L_0x705625786528 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v0x5b0a6855c900_0 .net "neuron_id", 7 0, L_0x705625786528;  1 drivers
+v0x5b0a6855c9a0_0 .var/s "next_potential", 8 0;
+v0x5b0a68558860_0 .net "rst_n", 0 0, v0x5b0a685b5850_0;  alias, 1 drivers
+v0x5b0a68558900_0 .var "spike_out", 0 0;
+E_0x5b0a6853b1f0/0 .event negedge, v0x5b0a68558860_0;
+E_0x5b0a6853b1f0/1 .event posedge, v0x5b0a685690e0_0;
+E_0x5b0a6853b1f0 .event/or E_0x5b0a6853b1f0/0, E_0x5b0a6853b1f0/1;
+S_0x5b0a685afd10 .scope module, "hidden_neuron_1" "lif_neuron_weighted" 3 154, 3 218 0, S_0x5b0a6854a3e0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 9 "input_current";
+    .port_info 3 /OUTPUT 1 "spike_out";
+    .port_info 4 /INPUT 8 "neuron_id";
+P_0x5b0a6856b580 .param/l "LEAK" 0 3 221, +C4<00000000000000000000000000000000>;
+P_0x5b0a6856b5c0 .param/l "POTENTIAL_WIDTH" 0 3 222, +C4<00000000000000000000000000001000>;
+P_0x5b0a6856b600 .param/l "THRESHOLD" 0 3 220, +C4<00000000000000000000000000000010>;
+P_0x5b0a6856b640 .param/l "WEIGHT" 0 3 219, +C4<00000000000000000000000000000000>;
+v0x5b0a685b0050_0 .net "clk", 0 0, v0x5b0a685b55e0_0;  alias, 1 drivers
+v0x5b0a685b00f0_0 .net/s "input_current", 8 0, L_0x5b0a685c7770;  alias, 1 drivers
+v0x5b0a685b01b0_0 .var/s "membrane_potential", 7 0;
+L_0x705625786570 .functor BUFT 1, C4<00000001>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b02a0_0 .net "neuron_id", 7 0, L_0x705625786570;  1 drivers
+v0x5b0a685b0380_0 .var/s "next_potential", 8 0;
+v0x5b0a685b04b0_0 .net "rst_n", 0 0, v0x5b0a685b5850_0;  alias, 1 drivers
+v0x5b0a685b0550_0 .var "spike_out", 0 0;
+S_0x5b0a685b06c0 .scope module, "output_neuron" "lif_neuron_weighted" 3 167, 3 218 0, S_0x5b0a6854a3e0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 9 "input_current";
+    .port_info 3 /OUTPUT 1 "spike_out";
+    .port_info 4 /INPUT 8 "neuron_id";
+P_0x5b0a685b08a0 .param/l "LEAK" 0 3 221, +C4<00000000000000000000000000000000>;
+P_0x5b0a685b08e0 .param/l "POTENTIAL_WIDTH" 0 3 222, +C4<00000000000000000000000000001000>;
+P_0x5b0a685b0920 .param/l "THRESHOLD" 0 3 220, +C4<00000000000000000000000000000010>;
+P_0x5b0a685b0960 .param/l "WEIGHT" 0 3 219, +C4<00000000000000000000000000000000>;
+v0x5b0a685b0be0_0 .net "clk", 0 0, v0x5b0a685b55e0_0;  alias, 1 drivers
+v0x5b0a685b0cd0_0 .net/s "input_current", 8 0, L_0x5b0a685c8960;  alias, 1 drivers
+v0x5b0a685b0db0_0 .var/s "membrane_potential", 7 0;
+L_0x7056257865b8 .functor BUFT 1, C4<00000010>, C4<0>, C4<0>, C4<0>;
+v0x5b0a685b0e70_0 .net "neuron_id", 7 0, L_0x7056257865b8;  1 drivers
+v0x5b0a685b0f50_0 .var/s "next_potential", 8 0;
+v0x5b0a685b1080_0 .net "rst_n", 0 0, v0x5b0a685b5850_0;  alias, 1 drivers
+v0x5b0a685b1170_0 .var "spike_out", 0 0;
+S_0x5b0a685b4830 .scope module, "encoder_0" "spike_encoder" 2 38, 4 8 0, S_0x5b0a6854c860;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "enable";
+    .port_info 3 /OUTPUT 1 "spike_out";
+P_0x5b0a685b49e0 .param/l "SPIKE_PERIOD" 0 4 9, +C4<00000000000000000000000000000101>;
+v0x5b0a685b4ae0_0 .net "clk", 0 0, v0x5b0a685b55e0_0;  alias, 1 drivers
+v0x5b0a685b4b80_0 .var "counter", 3 0;
+v0x5b0a685b4c60_0 .net "enable", 0 0, v0x5b0a685b5b20_0;  alias, 1 drivers
+v0x5b0a685b4d60_0 .net "rst_n", 0 0, v0x5b0a685b5850_0;  alias, 1 drivers
+v0x5b0a685b4e00_0 .var "spike_out", 0 0;
+S_0x5b0a685b4ef0 .scope module, "encoder_1" "spike_encoder" 2 47, 4 8 0, S_0x5b0a6854c860;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "enable";
+    .port_info 3 /OUTPUT 1 "spike_out";
+P_0x5b0a685b5080 .param/l "SPIKE_PERIOD" 0 4 9, +C4<00000000000000000000000000000101>;
+v0x5b0a685b5180_0 .net "clk", 0 0, v0x5b0a685b55e0_0;  alias, 1 drivers
+v0x5b0a685b5220_0 .var "counter", 3 0;
+v0x5b0a685b5300_0 .net "enable", 0 0, v0x5b0a685b5c10_0;  alias, 1 drivers
+v0x5b0a685b5400_0 .net "rst_n", 0 0, v0x5b0a685b5850_0;  alias, 1 drivers
+v0x5b0a685b54a0_0 .var "spike_out", 0 0;
+    .scope S_0x5b0a685b4830;
+T_0 ;
+    %vpi_call 4 22 "$display", "[SPIKE_ENCODER] Initialized with SPIKE_PERIOD = %0d", P_0x5b0a685b49e0 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x5b0a685b4830;
+T_1 ;
+    %wait E_0x5b0a6853b1f0;
+    %load/vec4 v0x5b0a685b4d60_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x5b0a685b4b80_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b4e00_0, 0;
+    %vpi_call 4 30 "$display", "[%0t] [SPIKE_ENCODER] Reset asserted", $time {0 0 0};
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x5b0a685b4c60_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.2, 8;
+    %load/vec4 v0x5b0a685b4b80_0;
+    %pad/u 32;
+    %cmpi/u 4, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_1.4, 5;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x5b0a685b4b80_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5b0a685b4e00_0, 0;
+    %vpi_call 4 37 "$display", "[%0t] [SPIKE_ENCODER] Spike generated (enable=1)", $time {0 0 0};
+    %jmp T_1.5;
+T_1.4 ;
+    %load/vec4 v0x5b0a685b4b80_0;
+    %addi 1, 0, 4;
+    %assign/vec4 v0x5b0a685b4b80_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b4e00_0, 0;
+T_1.5 ;
+    %jmp T_1.3;
+T_1.2 ;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x5b0a685b4b80_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b4e00_0, 0;
+T_1.3 ;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x5b0a685b4ef0;
+T_2 ;
+    %vpi_call 4 22 "$display", "[SPIKE_ENCODER] Initialized with SPIKE_PERIOD = %0d", P_0x5b0a685b5080 {0 0 0};
+    %end;
+    .thread T_2;
+    .scope S_0x5b0a685b4ef0;
+T_3 ;
+    %wait E_0x5b0a6853b1f0;
+    %load/vec4 v0x5b0a685b5400_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.0, 8;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x5b0a685b5220_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b54a0_0, 0;
+    %vpi_call 4 30 "$display", "[%0t] [SPIKE_ENCODER] Reset asserted", $time {0 0 0};
+    %jmp T_3.1;
+T_3.0 ;
+    %load/vec4 v0x5b0a685b5300_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.2, 8;
+    %load/vec4 v0x5b0a685b5220_0;
+    %pad/u 32;
+    %cmpi/u 4, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_3.4, 5;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x5b0a685b5220_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5b0a685b54a0_0, 0;
+    %vpi_call 4 37 "$display", "[%0t] [SPIKE_ENCODER] Spike generated (enable=1)", $time {0 0 0};
+    %jmp T_3.5;
+T_3.4 ;
+    %load/vec4 v0x5b0a685b5220_0;
+    %addi 1, 0, 4;
+    %assign/vec4 v0x5b0a685b5220_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b54a0_0, 0;
+T_3.5 ;
+    %jmp T_3.3;
+T_3.2 ;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x5b0a685b5220_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b54a0_0, 0;
+T_3.3 ;
+T_3.1 ;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x5b0a68549340;
+T_4 ;
+    %wait E_0x5b0a6853b1f0;
+    %load/vec4 v0x5b0a68558860_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_4.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a68566c30_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a68558900_0, 0;
+    %vpi_call 3 242 "$display", "[%0t] [NEURON_%0d] Reset", $time, v0x5b0a6855c900_0 {0 0 0};
+    %jmp T_4.1;
+T_4.0 ;
+    %load/vec4 v0x5b0a68566c30_0;
+    %pad/s 9;
+    %store/vec4 v0x5b0a6855c9a0_0, 0, 9;
+    %load/vec4 v0x5b0a6855c9a0_0;
+    %load/vec4 v0x5b0a68566760_0;
+    %add;
+    %store/vec4 v0x5b0a6855c9a0_0, 0, 9;
+    %load/vec4 v0x5b0a6855c9a0_0;
+    %pad/s 32;
+    %subi 0, 0, 32;
+    %pad/s 9;
+    %store/vec4 v0x5b0a6855c9a0_0, 0, 9;
+    %load/vec4 v0x5b0a68566c30_0;
+    %pad/s 32;
+    %cmpi/s 2, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_4.2, 5;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5b0a68558900_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a68566c30_0, 0;
+    %vpi_call 3 257 "$display", "[%0t] [NEURON_%0d] FIRED! Potential was %0d, reset to 0", $time, v0x5b0a6855c900_0, v0x5b0a68566c30_0 {0 0 0};
+    %jmp T_4.3;
+T_4.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a68558900_0, 0;
+    %load/vec4 v0x5b0a6855c9a0_0;
+    %pad/s 32;
+    %cmpi/s 0, 0, 32;
+    %jmp/0xz  T_4.4, 5;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a68566c30_0, 0;
+    %vpi_call 3 265 "$display", "[%0t] [NEURON_%0d] Potential clamped: %0d -> 0 (input=%0d)", $time, v0x5b0a6855c900_0, v0x5b0a6855c9a0_0, v0x5b0a68566760_0 {0 0 0};
+    %jmp T_4.5;
+T_4.4 ;
+    %load/vec4 v0x5b0a68566c30_0;
+    %load/vec4 v0x5b0a6855c9a0_0;
+    %parti/s 8, 0, 2;
+    %cmp/ne;
+    %jmp/0xz  T_4.6, 4;
+    %vpi_call 3 270 "$display", "[%0t] [NEURON_%0d] V: %0d -> %0d (current=%0d)", $time, v0x5b0a6855c900_0, v0x5b0a68566c30_0, &PV<v0x5b0a6855c9a0_0, 0, 8>, v0x5b0a68566760_0 {0 0 0};
+T_4.6 ;
+    %load/vec4 v0x5b0a6855c9a0_0;
+    %parti/s 8, 0, 2;
+    %assign/vec4 v0x5b0a68566c30_0, 0;
+T_4.5 ;
+T_4.3 ;
+T_4.1 ;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x5b0a685afd10;
+T_5 ;
+    %wait E_0x5b0a6853b1f0;
+    %load/vec4 v0x5b0a685b04b0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_5.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a685b01b0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b0550_0, 0;
+    %vpi_call 3 242 "$display", "[%0t] [NEURON_%0d] Reset", $time, v0x5b0a685b02a0_0 {0 0 0};
+    %jmp T_5.1;
+T_5.0 ;
+    %load/vec4 v0x5b0a685b01b0_0;
+    %pad/s 9;
+    %store/vec4 v0x5b0a685b0380_0, 0, 9;
+    %load/vec4 v0x5b0a685b0380_0;
+    %load/vec4 v0x5b0a685b00f0_0;
+    %add;
+    %store/vec4 v0x5b0a685b0380_0, 0, 9;
+    %load/vec4 v0x5b0a685b0380_0;
+    %pad/s 32;
+    %subi 0, 0, 32;
+    %pad/s 9;
+    %store/vec4 v0x5b0a685b0380_0, 0, 9;
+    %load/vec4 v0x5b0a685b01b0_0;
+    %pad/s 32;
+    %cmpi/s 2, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_5.2, 5;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5b0a685b0550_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a685b01b0_0, 0;
+    %vpi_call 3 257 "$display", "[%0t] [NEURON_%0d] FIRED! Potential was %0d, reset to 0", $time, v0x5b0a685b02a0_0, v0x5b0a685b01b0_0 {0 0 0};
+    %jmp T_5.3;
+T_5.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b0550_0, 0;
+    %load/vec4 v0x5b0a685b0380_0;
+    %pad/s 32;
+    %cmpi/s 0, 0, 32;
+    %jmp/0xz  T_5.4, 5;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a685b01b0_0, 0;
+    %vpi_call 3 265 "$display", "[%0t] [NEURON_%0d] Potential clamped: %0d -> 0 (input=%0d)", $time, v0x5b0a685b02a0_0, v0x5b0a685b0380_0, v0x5b0a685b00f0_0 {0 0 0};
+    %jmp T_5.5;
+T_5.4 ;
+    %load/vec4 v0x5b0a685b01b0_0;
+    %load/vec4 v0x5b0a685b0380_0;
+    %parti/s 8, 0, 2;
+    %cmp/ne;
+    %jmp/0xz  T_5.6, 4;
+    %vpi_call 3 270 "$display", "[%0t] [NEURON_%0d] V: %0d -> %0d (current=%0d)", $time, v0x5b0a685b02a0_0, v0x5b0a685b01b0_0, &PV<v0x5b0a685b0380_0, 0, 8>, v0x5b0a685b00f0_0 {0 0 0};
+T_5.6 ;
+    %load/vec4 v0x5b0a685b0380_0;
+    %parti/s 8, 0, 2;
+    %assign/vec4 v0x5b0a685b01b0_0, 0;
+T_5.5 ;
+T_5.3 ;
+T_5.1 ;
+    %jmp T_5;
+    .thread T_5;
+    .scope S_0x5b0a685b06c0;
+T_6 ;
+    %wait E_0x5b0a6853b1f0;
+    %load/vec4 v0x5b0a685b1080_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_6.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a685b0db0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b1170_0, 0;
+    %vpi_call 3 242 "$display", "[%0t] [NEURON_%0d] Reset", $time, v0x5b0a685b0e70_0 {0 0 0};
+    %jmp T_6.1;
+T_6.0 ;
+    %load/vec4 v0x5b0a685b0db0_0;
+    %pad/s 9;
+    %store/vec4 v0x5b0a685b0f50_0, 0, 9;
+    %load/vec4 v0x5b0a685b0f50_0;
+    %load/vec4 v0x5b0a685b0cd0_0;
+    %add;
+    %store/vec4 v0x5b0a685b0f50_0, 0, 9;
+    %load/vec4 v0x5b0a685b0f50_0;
+    %pad/s 32;
+    %subi 0, 0, 32;
+    %pad/s 9;
+    %store/vec4 v0x5b0a685b0f50_0, 0, 9;
+    %load/vec4 v0x5b0a685b0db0_0;
+    %pad/s 32;
+    %cmpi/s 2, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_6.2, 5;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x5b0a685b1170_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a685b0db0_0, 0;
+    %vpi_call 3 257 "$display", "[%0t] [NEURON_%0d] FIRED! Potential was %0d, reset to 0", $time, v0x5b0a685b0e70_0, v0x5b0a685b0db0_0 {0 0 0};
+    %jmp T_6.3;
+T_6.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x5b0a685b1170_0, 0;
+    %load/vec4 v0x5b0a685b0f50_0;
+    %pad/s 32;
+    %cmpi/s 0, 0, 32;
+    %jmp/0xz  T_6.4, 5;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5b0a685b0db0_0, 0;
+    %vpi_call 3 265 "$display", "[%0t] [NEURON_%0d] Potential clamped: %0d -> 0 (input=%0d)", $time, v0x5b0a685b0e70_0, v0x5b0a685b0f50_0, v0x5b0a685b0cd0_0 {0 0 0};
+    %jmp T_6.5;
+T_6.4 ;
+    %load/vec4 v0x5b0a685b0db0_0;
+    %load/vec4 v0x5b0a685b0f50_0;
+    %parti/s 8, 0, 2;
+    %cmp/ne;
+    %jmp/0xz  T_6.6, 4;
+    %vpi_call 3 270 "$display", "[%0t] [NEURON_%0d] V: %0d -> %0d (current=%0d)", $time, v0x5b0a685b0e70_0, v0x5b0a685b0db0_0, &PV<v0x5b0a685b0f50_0, 0, 8>, v0x5b0a685b0cd0_0 {0 0 0};
+T_6.6 ;
+    %load/vec4 v0x5b0a685b0f50_0;
+    %parti/s 8, 0, 2;
+    %assign/vec4 v0x5b0a685b0db0_0, 0;
+T_6.5 ;
+T_6.3 ;
+T_6.1 ;
+    %jmp T_6;
+    .thread T_6;
+    .scope S_0x5b0a6854a3e0;
+T_7 ;
+    %end;
+    .thread T_7;
+    .scope S_0x5b0a6854a3e0;
+T_8 ;
+    %vpi_call 3 83 "$display", "========================================================================" {0 0 0};
+    %vpi_call 3 84 "$display", "[SNN_TERNARY] XOR Network with TERNARY WEIGHTS {-1, 0, +1}" {0 0 0};
+    %vpi_call 3 85 "$display", "========================================================================" {0 0 0};
+    %vpi_call 3 86 "$display", "[SNN_TERNARY] Network Topology: 2 Inputs -> 2 Hidden -> 1 Output" {0 0 0};
+    %vpi_call 3 87 "$display", "[SNN_TERNARY] Neuron Parameters:" {0 0 0};
+    %vpi_call 3 88 "$display", "[SNN_TERNARY]   THRESHOLD = %0d (optimized for ternary)", P_0x5b0a68550a30 {0 0 0};
+    %vpi_call 3 89 "$display", "[SNN_TERNARY]   LEAK = %0d (MUST be 0 for ternary!)", P_0x5b0a685509b0 {0 0 0};
+    %vpi_call 3 90 "$display", "[SNN_TERNARY]   POTENTIAL_WIDTH = %0d bits", P_0x5b0a685509f0 {0 0 0};
+    %vpi_call 3 91 "$display", "[SNN_TERNARY] " {0 0 0};
+    %vpi_call 3 92 "$display", "[SNN_TERNARY] TERNARY WEIGHTS (constrained to {-1, 0, +1}):" {0 0 0};
+    %vpi_call 3 93 "$display", "[SNN_TERNARY]   Input->Hidden:" {0 0 0};
+    %vpi_call 3 94 "$display", "[SNN_TERNARY]     I0->H0: %+2d  |  I1->H0: %+2d", P_0x5b0a68550bb0, P_0x5b0a68550c30 {0 0 0};
+    %vpi_call 3 95 "$display", "[SNN_TERNARY]     I0->H1: %+2d  |  I1->H1: %+2d", P_0x5b0a68550bf0, P_0x5b0a68550c70 {0 0 0};
+    %vpi_call 3 96 "$display", "[SNN_TERNARY]   Hidden->Output:" {0 0 0};
+    %vpi_call 3 97 "$display", "[SNN_TERNARY]     H0->O: %+2d  |  H1->O: %+2d", P_0x5b0a68550af0, P_0x5b0a68550b70 {0 0 0};
+    %vpi_call 3 98 "$display", "[SNN_TERNARY]   Lateral Inhibition:" {0 0 0};
+    %vpi_call 3 99 "$display", "[SNN_TERNARY]     H0->H1: %+2d  |  H1->H0: %+2d", P_0x5b0a68550ab0, P_0x5b0a68550b30 {0 0 0};
+    %vpi_call 3 100 "$display", "[SNN_TERNARY]   Direct Inhibition:" {0 0 0};
+    %vpi_call 3 101 "$display", "[SNN_TERNARY]     Both_Active->Output: %+2d", P_0x5b0a68550a70 {0 0 0};
+    %vpi_call 3 102 "$display", "[SNN_TERNARY] " {0 0 0};
+    %vpi_call 3 103 "$display", "[SNN_TERNARY] Key Insight: With weight=1 and leak=0:" {0 0 0};
+    %vpi_call 3 104 "$display", "[SNN_TERNARY]   Net gain = +1 per spike (accumulates to threshold)" {0 0 0};
+    %vpi_call 3 105 "$display", "[SNN_TERNARY]   If leak=1, net gain = 0 (would never fire!)" {0 0 0};
+    %vpi_call 3 106 "$display", "========================================================================" {0 0 0};
+    %end;
+    .thread T_8;
+    .scope S_0x5b0a6854a3e0;
+T_9 ;
+    %wait E_0x5b0a6853a960;
+    %load/vec4 v0x5b0a685b3a80_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_9.0, 8;
+    %vpi_call 3 182 "$display", "[%0t] [SNN_TERNARY] *** HIDDEN_0 FIRED! ***", $time {0 0 0};
+T_9.0 ;
+    %load/vec4 v0x5b0a685b3b50_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_9.2, 8;
+    %vpi_call 3 185 "$display", "[%0t] [SNN_TERNARY] *** HIDDEN_1 FIRED! ***", $time {0 0 0};
+T_9.2 ;
+    %jmp T_9;
+    .thread T_9;
+    .scope S_0x5b0a6854a3e0;
+T_10 ;
+    %wait E_0x5b0a6853a960;
+    %load/vec4 v0x5b0a685b3c20_0;
+    %flag_set/vec4 8;
+    %jmp/1 T_10.2, 8;
+    %load/vec4 v0x5b0a685b3cc0_0;
+    %flag_set/vec4 9;
+    %flag_or 8, 9;
+T_10.2;
+    %jmp/0xz  T_10.0, 8;
+    %vpi_call 3 192 "$display", "[%0t] [SNN_TERNARY] Input Spikes: I0=%0d I1=%0d", $time, v0x5b0a685b3c20_0, v0x5b0a685b3cc0_0 {0 0 0};
+T_10.0 ;
+    %jmp T_10;
+    .thread T_10;
+    .scope S_0x5b0a6854a3e0;
+T_11 ;
+    %wait E_0x5b0a6853a960;
+    %load/vec4 v0x5b0a685b3d60_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_11.0, 8;
+    %vpi_call 3 199 "$display", "[%0t] [SNN_TERNARY] ======> OUTPUT SPIKE! <======", $time {0 0 0};
+T_11.0 ;
+    %jmp T_11;
+    .thread T_11;
+    .scope S_0x5b0a6854a3e0;
+T_12 ;
+    %wait E_0x5b0a6853a960;
+    %load/vec4 v0x5b0a685b3e30_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_12.2, 9;
+    %load/vec4 v0x5b0a685b3ed0_0;
+    %and;
+T_12.2;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_12.0, 8;
+    %vpi_call 3 206 "$display", "[%0t] [SNN_TERNARY] Both inputs active - direct inhibition enabled!", $time {0 0 0};
+T_12.0 ;
+    %jmp T_12;
+    .thread T_12;
+    .scope S_0x5b0a6854c860;
+T_13 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b55e0_0, 0, 1;
+T_13.0 ;
+    %delay 5000, 0;
+    %load/vec4 v0x5b0a685b55e0_0;
+    %inv;
+    %store/vec4 v0x5b0a685b55e0_0, 0, 1;
+    %jmp T_13.0;
+    %end;
+    .thread T_13;
+    .scope S_0x5b0a6854c860;
+T_14 ;
+    %vpi_call 2 77 "$dumpfile", "snn_ternary_waveform.vcd" {0 0 0};
+    %vpi_call 2 78 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x5b0a6854c860 {0 0 0};
+    %vpi_call 2 79 "$dumpvars", 32'sb00000000000000000000000000000000, v0x5b0a68566c30_0 {0 0 0};
+    %vpi_call 2 80 "$dumpvars", 32'sb00000000000000000000000000000000, v0x5b0a685b01b0_0 {0 0 0};
+    %vpi_call 2 81 "$dumpvars", 32'sb00000000000000000000000000000000, v0x5b0a685b0db0_0 {0 0 0};
+    %end;
+    .thread T_14;
+    .scope S_0x5b0a6854c860;
+T_15 ;
+    %wait E_0x5b0a6853a960;
+    %load/vec4 v0x5b0a685b56a0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_15.0, 8;
+    %load/vec4 v0x5b0a685b57b0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x5b0a685b57b0_0, 0, 32;
+T_15.0 ;
+    %jmp T_15;
+    .thread T_15;
+    .scope S_0x5b0a6854c860;
+T_16 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b5850_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b5b20_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b5c10_0, 0, 1;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5b0a685b57b0_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5b0a685b5d00_0, 0, 32;
+    %vpi_call 2 100 "$display", "\012" {0 0 0};
+    %vpi_call 2 101 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 102 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 103 "$display", "      XOR SPIKING NEURAL NETWORK - TERNARY WEIGHTS TESTBENCH" {0 0 0};
+    %vpi_call 2 104 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 105 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 106 "$display", "\000" {0 0 0};
+    %vpi_call 2 107 "$display", "Simulation Parameters:" {0 0 0};
+    %vpi_call 2 108 "$display", "  Clock Period: %0d ns", P_0x5b0a6854b630 {0 0 0};
+    %vpi_call 2 109 "$display", "  Spike Period: %0d cycles", P_0x5b0a6854b730 {0 0 0};
+    %vpi_call 2 110 "$display", "  Total Simulation Time: %0d ns", P_0x5b0a6854b6f0 {0 0 0};
+    %vpi_call 2 111 "$display", "  Neuron Threshold: %0d (LOW for ternary)", P_0x5b0a6854b770 {0 0 0};
+    %vpi_call 2 112 "$display", "  Neuron Leak: %0d (ZERO for ternary!)", P_0x5b0a6854b670 {0 0 0};
+    %vpi_call 2 113 "$display", "\000" {0 0 0};
+    %vpi_call 2 114 "$display", "CRITICAL: All weights constrained to {-1, 0, +1}" {0 0 0};
+    %vpi_call 2 115 "$display", "          With LEAK=0 to allow accumulation!" {0 0 0};
+    %vpi_call 2 116 "$display", "\000" {0 0 0};
+    %vpi_call 2 117 "$display", "XOR Truth Table:" {0 0 0};
+    %vpi_call 2 118 "$display", "  0 XOR 0 = 0" {0 0 0};
+    %vpi_call 2 119 "$display", "  0 XOR 1 = 1" {0 0 0};
+    %vpi_call 2 120 "$display", "  1 XOR 0 = 1" {0 0 0};
+    %vpi_call 2 121 "$display", "  1 XOR 1 = 0" {0 0 0};
+    %vpi_call 2 122 "$display", "\000" {0 0 0};
+    %vpi_call 2 123 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 124 "$display", "\000" {0 0 0};
+    %vpi_call 2 127 "$display", "[%0t] Applying system reset...", $time {0 0 0};
+    %delay 30000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5b0a685b5850_0, 0, 1;
+    %delay 30000, 0;
+    %vpi_call 2 131 "$display", "[%0t] Reset released, starting tests...", $time {0 0 0};
+    %vpi_call 2 132 "$display", "\000" {0 0 0};
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0x5b0a685b5d00_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5b0a685b57b0_0, 0, 32;
+    %vpi_call 2 139 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 140 "$display", "TEST 1: 0 XOR 0 = 0 (Expected: NO output spikes)" {0 0 0};
+    %vpi_call 2 141 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 142 "$display", "\000" {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b5b20_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b5c10_0, 0, 1;
+    %delay 250000, 0;
+    %vpi_call 2 148 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 149 "$display", "TEST 1 RESULT:" {0 0 0};
+    %vpi_call 2 150 "$display", "  Input: 0 XOR 0" {0 0 0};
+    %vpi_call 2 151 "$display", "  Output Spikes: %0d", v0x5b0a685b57b0_0 {0 0 0};
+    %vpi_call 2 152 "$display", "  Expected: 0 spikes" {0 0 0};
+    %load/vec4 v0x5b0a685b57b0_0;
+    %cmpi/e 0, 0, 32;
+    %jmp/0xz  T_16.0, 4;
+    %vpi_call 2 154 "$display", "  STATUS: \342\234\223 PASS" {0 0 0};
+    %jmp T_16.1;
+T_16.0 ;
+    %vpi_call 2 156 "$display", "  STATUS: \342\234\227 FAIL" {0 0 0};
+T_16.1 ;
+    %vpi_call 2 158 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 159 "$display", "\000" {0 0 0};
+    %pushi/vec4 2, 0, 32;
+    %store/vec4 v0x5b0a685b5d00_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5b0a685b57b0_0, 0, 32;
+    %vpi_call 2 166 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 167 "$display", "TEST 2: 0 XOR 1 = 1 (Expected: output spikes present)" {0 0 0};
+    %vpi_call 2 168 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 169 "$display", "\000" {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b5b20_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5b0a685b5c10_0, 0, 1;
+    %delay 250000, 0;
+    %vpi_call 2 175 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 176 "$display", "TEST 2 RESULT:" {0 0 0};
+    %vpi_call 2 177 "$display", "  Input: 0 XOR 1" {0 0 0};
+    %vpi_call 2 178 "$display", "  Output Spikes: %0d", v0x5b0a685b57b0_0 {0 0 0};
+    %vpi_call 2 179 "$display", "  Expected: >0 spikes" {0 0 0};
+    %load/vec4 v0x5b0a685b57b0_0;
+    %cmpi/s 0, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_16.2, 5;
+    %vpi_call 2 181 "$display", "  STATUS: \342\234\223 PASS" {0 0 0};
+    %jmp T_16.3;
+T_16.2 ;
+    %vpi_call 2 183 "$display", "  STATUS: \342\234\227 FAIL (No output with ternary weights)" {0 0 0};
+T_16.3 ;
+    %vpi_call 2 185 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 186 "$display", "\000" {0 0 0};
+    %pushi/vec4 3, 0, 32;
+    %store/vec4 v0x5b0a685b5d00_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5b0a685b57b0_0, 0, 32;
+    %vpi_call 2 193 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 194 "$display", "TEST 3: 1 XOR 0 = 1 (Expected: output spikes present)" {0 0 0};
+    %vpi_call 2 195 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 196 "$display", "\000" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5b0a685b5b20_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5b0a685b5c10_0, 0, 1;
+    %delay 250000, 0;
+    %vpi_call 2 202 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 203 "$display", "TEST 3 RESULT:" {0 0 0};
+    %vpi_call 2 204 "$display", "  Input: 1 XOR 0" {0 0 0};
+    %vpi_call 2 205 "$display", "  Output Spikes: %0d", v0x5b0a685b57b0_0 {0 0 0};
+    %vpi_call 2 206 "$display", "  Expected: >0 spikes" {0 0 0};
+    %load/vec4 v0x5b0a685b57b0_0;
+    %cmpi/s 0, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_16.4, 5;
+    %vpi_call 2 208 "$display", "  STATUS: \342\234\223 PASS" {0 0 0};
+    %jmp T_16.5;
+T_16.4 ;
+    %vpi_call 2 210 "$display", "  STATUS: \342\234\227 FAIL" {0 0 0};
+T_16.5 ;
+    %vpi_call 2 212 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 213 "$display", "\000" {0 0 0};
+    %pushi/vec4 4, 0, 32;
+    %store/vec4 v0x5b0a685b5d00_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5b0a685b57b0_0, 0, 32;
+    %vpi_call 2 220 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 221 "$display", "TEST 4: 1 XOR 1 = 0 (Expected: NO output spikes - inhibited!)" {0 0 0};
+    %vpi_call 2 222 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 223 "$display", "\000" {0 0 0};
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5b0a685b5b20_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5b0a685b5c10_0, 0, 1;
+    %delay 250000, 0;
+    %vpi_call 2 229 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 230 "$display", "TEST 4 RESULT:" {0 0 0};
+    %vpi_call 2 231 "$display", "  Input: 1 XOR 1" {0 0 0};
+    %vpi_call 2 232 "$display", "  Output Spikes: %0d", v0x5b0a685b57b0_0 {0 0 0};
+    %vpi_call 2 233 "$display", "  Expected: 0 spikes (lateral inhibition + direct inhibition)" {0 0 0};
+    %load/vec4 v0x5b0a685b57b0_0;
+    %cmpi/e 0, 0, 32;
+    %jmp/0xz  T_16.6, 4;
+    %vpi_call 2 235 "$display", "  STATUS: \342\234\223 PASS" {0 0 0};
+    %jmp T_16.7;
+T_16.6 ;
+    %vpi_call 2 237 "$display", "  STATUS: \342\234\227 FAIL (Inhibition not working)" {0 0 0};
+T_16.7 ;
+    %vpi_call 2 239 "$display", "---------------------------------------------------------------" {0 0 0};
+    %vpi_call 2 240 "$display", "\000" {0 0 0};
+    %vpi_call 2 245 "$display", "\000" {0 0 0};
+    %vpi_call 2 246 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 247 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 248 "$display", "                      SIMULATION COMPLETE" {0 0 0};
+    %vpi_call 2 249 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 250 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 251 "$display", "\000" {0 0 0};
+    %vpi_call 2 252 "$display", "Total simulation time: %0t ns", $time {0 0 0};
+    %vpi_call 2 253 "$display", "Waveform saved to: snn_ternary_waveform.vcd" {0 0 0};
+    %vpi_call 2 254 "$display", "\000" {0 0 0};
+    %vpi_call 2 255 "$display", "TERNARY WEIGHT EXPERIMENT:" {0 0 0};
+    %vpi_call 2 256 "$display", "  All weights: {-1, 0, +1} only" {0 0 0};
+    %vpi_call 2 257 "$display", "  LEAK = 0 (critical for accumulation)" {0 0 0};
+    %vpi_call 2 258 "$display", "  THRESHOLD = 3 (optimized for small weights)" {0 0 0};
+    %vpi_call 2 259 "$display", "\000" {0 0 0};
+    %vpi_call 2 260 "$display", "Key Findings:" {0 0 0};
+    %vpi_call 2 261 "$display", "  \342\234\223 Extreme quantization possible" {0 0 0};
+    %vpi_call 2 262 "$display", "  \342\234\223 Minimal hardware resources (1-bit weights)" {0 0 0};
+    %vpi_call 2 263 "$display", "  \342\232\240 Requires LEAK=0 (less biologically realistic)" {0 0 0};
+    %vpi_call 2 264 "$display", "\000" {0 0 0};
+    %vpi_call 2 265 "$display", "Next Steps:" {0 0 0};
+    %vpi_call 2 266 "$display", "  1. View waveforms: gtkwave snn_ternary_waveform.vcd" {0 0 0};
+    %vpi_call 2 267 "$display", "  2. Compare with standard design (LEAK=1, weights=15-22)" {0 0 0};
+    %vpi_call 2 268 "$display", "  3. Analyze trade-offs: quantization vs realism" {0 0 0};
+    %vpi_call 2 269 "$display", "\000" {0 0 0};
+    %vpi_call 2 270 "$display", "========================================================================" {0 0 0};
+    %vpi_call 2 271 "$display", "\000" {0 0 0};
+    %vpi_call 2 273 "$finish" {0 0 0};
+    %end;
+    .thread T_16;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "tb_snn_ternary.v";
+    "snn_core_ternary.v";
+    "spike_encoder.v";

@@ -3,9 +3,12 @@
 `timescale 1ns/1ps
 
 module aer_pixel_encoder #(
-    parameter SPIKE_PERIOD = 5,
+    parameter SPIKE_PERIOD_0 = 5,     // Staggered periods to avoid synchronization
+    parameter SPIKE_PERIOD_1 = 7,
+    parameter SPIKE_PERIOD_2 = 11,
+    parameter SPIKE_PERIOD_3 = 13,
     parameter PIXEL_WIDTH = 1,
-    parameter QUIET_PERIOD = 10
+    parameter QUIET_PERIOD = 100      // Very long period for inactive pixels
 ) (
     input  wire clk,
     input  wire rst_n,
@@ -34,12 +37,12 @@ module aer_pixel_encoder #(
     wire [7:0] period_0, period_1, period_2, period_3;
     
     // Determine spike period based on pixel value
-    // Active pixel (1) -> fast spikes (SPIKE_PERIOD)
-    // Inactive pixel (0) -> slow/no spikes (QUIET_PERIOD)
-    assign period_0 = (pixel_0 > 0) ? SPIKE_PERIOD : QUIET_PERIOD;
-    assign period_1 = (pixel_1 > 0) ? SPIKE_PERIOD : QUIET_PERIOD;
-    assign period_2 = (pixel_2 > 0) ? SPIKE_PERIOD : QUIET_PERIOD;
-    assign period_3 = (pixel_3 > 0) ? SPIKE_PERIOD : QUIET_PERIOD;
+    // Active pixel (1) -> fast spikes (staggered periods)
+    // Inactive pixel (0) -> very slow/no spikes (QUIET_PERIOD)
+    assign period_0 = (pixel_0 > 0) ? SPIKE_PERIOD_0 : QUIET_PERIOD;
+    assign period_1 = (pixel_1 > 0) ? SPIKE_PERIOD_1 : QUIET_PERIOD;
+    assign period_2 = (pixel_2 > 0) ? SPIKE_PERIOD_2 : QUIET_PERIOD;
+    assign period_3 = (pixel_3 > 0) ? SPIKE_PERIOD_3 : QUIET_PERIOD;
     
     // Spike generation logic
     always @(posedge clk or negedge rst_n) begin
@@ -136,9 +139,12 @@ module aer_pixel_encoder #(
     // Statistics (optional, for debugging)
     initial begin
         $display("===================================================================");
-        $display("[AER_ENCODER] Initialized with:");
-        $display("  SPIKE_PERIOD  = %0d cycles (for active pixels)", SPIKE_PERIOD);
-        $display("  QUIET_PERIOD  = %0d cycles (for inactive pixels)", QUIET_PERIOD);
+        $display("[AER_ENCODER] Initialized with staggered spike periods:");
+        $display("  SPIKE_PERIOD_0 = %0d cycles", SPIKE_PERIOD_0);
+        $display("  SPIKE_PERIOD_1 = %0d cycles", SPIKE_PERIOD_1);
+        $display("  SPIKE_PERIOD_2 = %0d cycles", SPIKE_PERIOD_2);
+        $display("  SPIKE_PERIOD_3 = %0d cycles", SPIKE_PERIOD_3);
+        $display("  QUIET_PERIOD   = %0d cycles (for inactive pixels)", QUIET_PERIOD);
         $display("  4 input channels (2x2 pixel grid)");
         $display("===================================================================");
     end

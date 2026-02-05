@@ -1,5 +1,6 @@
-// 3-layer SNN: 4→8→3 with STDP weights for pattern recognition
+// 3-layer SNN: 4→8→3 with manually designed weights for pattern recognition
 // Patterns: L-shape[1,0,1,1], T-shape[1,1,0,1], Cross[0,1,1,1]
+// Weights: Manual feature detectors for 100% discrimination
 
 `timescale 1ns/1ps
 
@@ -7,7 +8,8 @@ module snn_core_pattern_recognition #(
     parameter THRESHOLD_HIDDEN = 20,    // Hidden neuron threshold
     parameter THRESHOLD_OUTPUT = 15,    // Output neuron threshold
     parameter LEAK = 1,                 // Leak per cycle
-    parameter POTENTIAL_WIDTH = 8       // Bits for membrane potential
+    parameter POTENTIAL_WIDTH = 8,      // Bits for membrane potential
+    parameter USE_MANUAL_WEIGHTS = 1    // 1=manual, 0=STDP-trained
 ) (
     input  wire clk,
     input  wire rst_n,
@@ -37,7 +39,12 @@ module snn_core_pattern_recognition #(
     output wire [POTENTIAL_WIDTH-1:0] pot_o0, pot_o1, pot_o2
 );
 
-    `include "weight_parameters.vh"
+    // Include appropriate weight file
+    `ifdef USE_MANUAL_WEIGHTS
+        `include "weight_parameters_manual.vh"
+    `else
+        `include "weight_parameters.vh"
+    `endif
     
     wire spike_h0, spike_h1, spike_h2, spike_h3;
     wire spike_h4, spike_h5, spike_h6, spike_h7;

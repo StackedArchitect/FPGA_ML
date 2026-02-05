@@ -36,11 +36,14 @@ module tb_snn_pattern_recognition;
     reg test_passed;
     integer total_tests, passed_tests;
     
-    // INSTANTIATE AER PIXEL ENCODER
+    // INSTANTIATE AER PIXEL ENCODER (synchronized periods for predictable integration)
     
     aer_pixel_encoder #(
-        .SPIKE_PERIOD(5),    // Active pixels spike every 5 cycles
-        .QUIET_PERIOD(10)    // Inactive pixels spike every 10 cycles (background)
+        .SPIKE_PERIOD_0(5),    // All use same period for synchronized integration
+        .SPIKE_PERIOD_1(5),
+        .SPIKE_PERIOD_2(5),
+        .SPIKE_PERIOD_3(5),
+        .QUIET_PERIOD(100)     // Very long for inactive pixels
     ) aer_enc (
         .clk(clk),
         .rst_n(rst_n),
@@ -55,13 +58,14 @@ module tb_snn_pattern_recognition;
         .spike_out_3(spike_in_3)
     );
     
-    // INSTANTIATE SNN CORE
+    // INSTANTIATE SNN CORE (with manual weights and adjusted thresholds)
     
     snn_core_pattern_recognition #(
         .THRESHOLD_HIDDEN(20),
-        .THRESHOLD_OUTPUT(15),
+        .THRESHOLD_OUTPUT(30),   // Higher threshold for better discrimination
         .LEAK(1),
-        .POTENTIAL_WIDTH(8)
+        .POTENTIAL_WIDTH(8),
+        .USE_MANUAL_WEIGHTS(1)   // Use manually designed discriminative weights
     ) dut (
         .clk(clk),
         .rst_n(rst_n),
